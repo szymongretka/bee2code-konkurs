@@ -2,10 +2,9 @@ package pl.szymongretka.bee2code.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,6 +19,11 @@ public class University {
     private String email;
     private String phone;
     private String items;
-    //studentsList
-    //fieldsOfStudy
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
+    private Set<Student> studentsList = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
+    private Set<FieldOfStudy> fieldsOfStudy = new HashSet<>();
+
 }
