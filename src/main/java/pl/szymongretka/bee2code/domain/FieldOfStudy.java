@@ -1,7 +1,5 @@
 package pl.szymongretka.bee2code.domain;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,10 +16,10 @@ public class FieldOfStudy {
     private String startDate;
     private String studentsLimit;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private University university;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
 
 }

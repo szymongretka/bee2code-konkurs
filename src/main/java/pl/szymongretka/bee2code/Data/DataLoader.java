@@ -54,17 +54,18 @@ public class DataLoader implements CommandLineRunner {
         University politechnika = new University();
         University uni2 = new University();
 
-        Student kowalski = new Student("ham", "nazwisko", "email@email", "65656",
-                22, 4.02, politechnika, automatyka,  GENDER.male, STUDENT_STATUS.deans_leave);
 
         politechnika.setAddition_date("14.02");
         politechnika.setAddress("akademicka");
         politechnika.setEmail("dziekanat@polsl.pl");
         politechnika.setName("SUT");
         politechnika.setPhone("54486");
-        politechnika.getStudentsList().add(kowalski);
-        //politechnika.getStudentsList().add(new Student());
-        //politechnika.getStudentsList().add(new Student("ham", "nazwisko", "email@email", "65656", 22, 4.02, politechnika, automatyka,  GENDER.male, STUDENT_STATUS.deans_leave));
+
+        politechnika.getStudentsList().add(new Student( "ham", "nazwisko", "email@email",
+                "65656", 22, 4.02, automatyka,  GENDER.male, STUDENT_STATUS.deans_leave));
+        politechnika.getStudentsList().add(new Student( "drugi", "edek", "123@email",
+                "65656", 21, 4.02, automatyka,  GENDER.female, STUDENT_STATUS.active));
+
 
         uni2.setAddition_date("14.12");
         uni2.setAddress("kujawska");
