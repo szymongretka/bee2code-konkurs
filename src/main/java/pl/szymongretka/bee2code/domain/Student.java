@@ -1,16 +1,14 @@
 package pl.szymongretka.bee2code.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude="university")
 public class Student {
@@ -48,6 +46,20 @@ public class Student {
         this.fieldsOfStudy = fieldsOfStudy;
         this.gender = gender;
         this.student_status = student_status;
+    }
+
+    public Student(String firstName, String lastName, String email, String phone, Integer age, Double averageGrade,
+                   Set<FieldOfStudy> fieldsOfStudy, GENDER gender, STUDENT_STATUS student_status, University university) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.age = age;
+        this.averageGrade = averageGrade;
+        this.fieldsOfStudy = fieldsOfStudy;
+        this.gender = gender;
+        this.student_status = student_status;
+        this.university = university;
     }
 
 }

@@ -8,6 +8,7 @@ public class Bee2codeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Bee2codeApplication.class, args);
+
     }
 
 }

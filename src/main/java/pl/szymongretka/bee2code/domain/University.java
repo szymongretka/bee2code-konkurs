@@ -1,13 +1,15 @@
 package pl.szymongretka.bee2code.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class University {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +27,11 @@ public class University {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
     private Set<FieldOfStudy> fieldsOfStudy = new HashSet<>();
+
+    public University addStudent(Student student){
+        student.setUniversity(this);
+        this.studentsList.add(student);
+        return this;
+    }
 
 }

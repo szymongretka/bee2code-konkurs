@@ -17,7 +17,8 @@ public class DataLoader implements CommandLineRunner {
     private final UniversityRepository universityRepository;
     private final FieldOfStudyRepository fieldOfStudyRepository;
 
-    public DataLoader(StudentRepository studentRepository, UniversityRepository universityRepository, FieldOfStudyRepository fieldOfStudyRepository) {
+    public DataLoader(StudentRepository studentRepository, UniversityRepository universityRepository,
+                      FieldOfStudyRepository fieldOfStudyRepository) {
         this.studentRepository = studentRepository;
         this.universityRepository = universityRepository;
         this.fieldOfStudyRepository = fieldOfStudyRepository;
