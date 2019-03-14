@@ -24,6 +24,8 @@ public class DataLoader implements CommandLineRunner {
         this.fieldOfStudyRepository = fieldOfStudyRepository;
     }
 
+    private Set<FieldOfStudy> automatyka = new HashSet<>();
+    private University testowa = new University();
 
     @Override
     public void run(String... args) throws Exception {
@@ -33,34 +35,34 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadStudents(){
-        /*Student student1 = new Student();
-        Student student2 = new Student();
-
-        student1.setAge(18);
-        student1.setEmail("student@email.com");
-        student1.setGender(GENDER.male);
-        student1.setStudent_status(STUDENT_STATUS.active);
-        student1.setPhone("345534");
-
-        student2.setAge(20);
-        student2.setEmail("student2@email.com");
-        student2.setGender(GENDER.female);
-        student2.setStudent_status(STUDENT_STATUS.suspended);
-        student2.setPhone("89834");*/
 
     }
     private void loadUniversities(){
 
-        Set<FieldOfStudy> automatyka = new HashSet<>();
         University politechnika = new University();
         University uni2 = new University();
 
+        Student student1 = new Student();
 
         politechnika.setAddition_date("14.02");
         politechnika.setAddress("akademicka");
         politechnika.setEmail("dziekanat@polsl.pl");
         politechnika.setName("SUT");
         politechnika.setPhone("54486");
+
+        student1.setFirstName("edward");
+        student1.setLastName("nozycoreki");
+        student1.setEmail("edward@email");
+        student1.setPhone("89898");
+        student1.setAge(32);
+        student1.setAverageGrade(3.5);
+        student1.setFieldsOfStudy(automatyka);
+        student1.setGender(GENDER.male);
+        student1.setStudent_status(STUDENT_STATUS.active);
+        //student1.setUniversity(politechnika);
+
+
+        politechnika.getStudentsList().add(student1);
 
         politechnika.getStudentsList().add(new Student( "ham", "nazwisko", "email@email",
                 "65656", 22, 4.02, automatyka,  GENDER.male, STUDENT_STATUS.deans_leave));
@@ -73,6 +75,9 @@ public class DataLoader implements CommandLineRunner {
         uni2.setEmail("nic@polsl.pl");
         uni2.setName("AEI");
         uni2.setPhone("8888");
+
+        uni2.getStudentsList().add(new Student( "trzeci", "rd", "email@email",
+                "888", 22, 8.02, automatyka,  GENDER.male, STUDENT_STATUS.deans_leave));
 
         universityRepository.save(politechnika);
         universityRepository.save(uni2);

@@ -22,16 +22,16 @@ public class University {
     private String phone;
     private String items;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "university")
+    @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY, mappedBy = "university")
     private Set<Student> studentsList = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
     private Set<FieldOfStudy> fieldsOfStudy = new HashSet<>();
 
-    public University addStudent(Student student){
+    /*public University addStudent(Student student){
         student.setUniversity(this);
         this.studentsList.add(student);
         return this;
-    }
+    }*/
 
 }

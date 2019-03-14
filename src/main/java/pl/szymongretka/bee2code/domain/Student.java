@@ -23,8 +23,8 @@ public class Student {
     private Integer age;
     private Double averageGrade;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private University university;
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    private University university;*/
 
     @OneToMany(mappedBy = "student")
     private Set<FieldOfStudy> fieldsOfStudy = new HashSet<>();
@@ -48,18 +48,5 @@ public class Student {
         this.student_status = student_status;
     }
 
-    public Student(String firstName, String lastName, String email, String phone, Integer age, Double averageGrade,
-                   Set<FieldOfStudy> fieldsOfStudy, GENDER gender, STUDENT_STATUS student_status, University university) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.averageGrade = averageGrade;
-        this.fieldsOfStudy = fieldsOfStudy;
-        this.gender = gender;
-        this.student_status = student_status;
-        this.university = university;
-    }
 
 }
