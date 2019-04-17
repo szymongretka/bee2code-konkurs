@@ -6,11 +6,9 @@ import pl.szymongretka.bee2code.Repositories.UniversityRepository;
 import pl.szymongretka.bee2code.domain.Student;
 import pl.szymongretka.bee2code.domain.University;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UniversityServiceImpl implements UniversityService {

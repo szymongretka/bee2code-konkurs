@@ -2,16 +2,20 @@ package pl.szymongretka.bee2code.Controllers;
 
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import pl.szymongretka.bee2code.Services.UniversityService;
 import pl.szymongretka.bee2code.domain.Student;
 import pl.szymongretka.bee2code.domain.University;
 
-import java.util.List;
-import java.util.Set;
+import javax.validation.Valid;
+import java.util.*;
 
 @RestController
 @RequestMapping("/university")
+@CrossOrigin
 public class UniversityController {
 
     private final UniversityService universityService;
@@ -27,15 +31,30 @@ public class UniversityController {
     }
 
     @PostMapping("/all")
-    @ResponseStatus(HttpStatus.CREATED)
-    public University saveUniversity(@RequestBody University university){
-        return universityService.save(university);
+    public ResponseEntity<?> saveUniversity(@Valid @RequestBody University university, BindingResult result){
+
+        if(result.hasErrors()){
+            Map<String, String> errorMap = new HashMap<>();
+
+            for(FieldError error : result.getFieldErrors()){
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+            return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
+        }
+        University uni = universityService.save(university);
+        return new ResponseEntity<>(uni, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{name}")
+    /*@GetMapping("/{name}")
     @ResponseStatus(HttpStatus.OK)
     public University getUniversityByName(@PathVariable String name){
         return universityService.findByName(name);
+    }*/
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<University> getUniversityById(@PathVariable Long id){
+        return universityService.findById(id);
     }
 
     @GetMapping("/students")
@@ -56,7 +75,7 @@ public class UniversityController {
         return universityService.findById(id)
                 .map(university -> {
                     university.setName(newUniversity.getName());
-                    university.setAddress(newUniversity.getAddress()); //TODO
+                    //university.setAddress(newUniversity.getAddress()); //TODO
                     return universityService.save(university);
                 })
                 .orElseGet(() -> {

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +17,12 @@ public class University {
     @Id
     private Long id;
     private String addition_date;
+
+    @NotBlank(message = "Name cannot be blank")
     private String name;
     private String address;
     private String email;
     private String phone;
-    private String items;
 
     @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY, mappedBy = "university")
     private Set<Student> studentsList = new HashSet<>();
